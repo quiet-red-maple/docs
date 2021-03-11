@@ -50,6 +50,7 @@
   <!-- 评论系统 -->
   <script src="//unpkg.com/docsify/lib/plugins/gitalk.min.js"></script>
   <script src="//unpkg.com/gitalk/dist/gitalk.min.js"></script>
+  <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js"></script>
   <script>
     const gitalk = new Gitalk({
       clientID: '518da134d077abbac47d',
@@ -57,6 +58,7 @@
       repo: 'docs',
       owner: 'quiet-red-maple',
       admin: ['quiet-red-maple'],
+      id: md5(window.location.pathname),
       // facebook-like distraction free mode
       distractionFreeMode: false
     })
