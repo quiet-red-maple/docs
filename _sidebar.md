@@ -15,11 +15,12 @@
   - [string 基础操作](pages/string基础操作.md)
   - [array 基础操作](pages/array_基础操作.md)
   - [js 引擎执行过程](pages/js引擎的执行过程.md)
-  - [ES6 模块与 CommonJS 模块](pages/ES6模块与CommonJS模块.md)
+  - [js 模块化演变（commonjs:ESM）](pages/js_模块（commonjs:ESM）.md)
   - [class 知识点](pages/class知识点.md)
   - [深浅拷贝](pages/深浅拷贝.md)
   - [事件委托](pages/事件委托.md)
   - [Event Loop(事件循环)](<pages/Event_Loop(事件循环).md>)
+  - [call、apply、bind](pages/call、apply、bind.md)
 
 - Typescript
 
