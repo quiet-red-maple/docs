@@ -15,7 +15,7 @@
   - [string 基础操作](pages/string基础操作.md)
   - [array 基础操作](pages/array_基础操作.md)
   - [js 引擎执行过程](pages/js引擎的执行过程.md)
-  - [js 模块化演变（commonjs/ESM）](<pages/js_模块(commonjs:ESM).md>)
+  - [js 模块演变](pages/js-模块演变.md)
   - [class 知识点](pages/class知识点.md)
   - [深浅拷贝](pages/深浅拷贝.md)
   - [事件委托](pages/事件委托.md)
