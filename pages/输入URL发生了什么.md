@@ -80,17 +80,15 @@ http 协议是基于 tcp/ip 协议，而在开始数据传输之前会先进行 
 
 接下来我们主要分析 GUI 渲染线程执行的详细过程：
 
-```
-1. 解析HTML文件，构建DOM树，同时浏览器主进程负责下载CSS文件
+1. 解析 HTML 文件，构建 DOM 树，同时浏览器主进程负责下载 CSS 文件
 
-2. CSS文件下载完成，解析CSS文件成树形的数据结构，然后结合DOM树合并成RenderObject树
+2. CSS 文件下载完成，解析 CSS 文件成树形的数据结构，然后结合 DOM 树合并成 RenderObject 树
 
-3. 布局RenderObject树，负责RenderObject树中的元素尺寸，位置等计算
+3. 布局 RenderObject 树，负责 RenderObject 树中的元素尺寸，位置等计算
 
-4. 绘制RenderObject树，绘制页面的像素信息
+4. 绘制 RenderObject 树，绘制页面的像素信息
 
-5. 浏览器主进程将默认图层和复合图层交给GPU进程，GPU进程再将各个图层合成（composite），最后显示出页面
-```
+5. 浏览器主进程将默认图层和复合图层交给 GPU 进程，GPU 进程再将各个图层合成（composite），最后显示出页面
 
 注：
 

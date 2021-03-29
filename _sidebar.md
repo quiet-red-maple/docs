@@ -20,6 +20,7 @@
   - [深浅拷贝](pages/深浅拷贝.md)
   - [事件委托](pages/事件委托.md)
   - [Event Loop(事件循环)](<pages/Event_Loop(事件循环).md>)
+  - [原型链](pages/原型链.md)
   - [call、apply、bind](pages/call、apply、bind.md)
 
 - Typescript
