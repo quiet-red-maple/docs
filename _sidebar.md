@@ -16,6 +16,7 @@
   - [array 基础操作](pages/array_基础操作.md)
   - [js 引擎执行过程](pages/js引擎的执行过程.md)
   - [js 模块演变](pages/js-模块演变.md)
+  - [ES6 模块和 CommonJS](pages/ES6模块和CommonJS.md)
   - [class 知识点](pages/class知识点.md)
   - [深浅拷贝](pages/深浅拷贝.md)
   - [事件委托](pages/事件委托.md)
