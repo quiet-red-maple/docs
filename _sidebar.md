@@ -31,6 +31,7 @@
 - 框架
 
   - [React 知识点](pages/React知识点.md)
+  - [React 理念](pages/React理念.md)
   - [React 生命周期](pages/React生命周期.md)
   - [vue3 api](pages/vue3_api.md)
 
