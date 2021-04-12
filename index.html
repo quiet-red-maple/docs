@@ -14,24 +14,26 @@
   <!-- <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/prismjs@1.23.0/themes/prism-okaidia.css" /> -->
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/prismjs@1.23.0/themes/prism-tomorrow.css" />
   <style>
-  .markdown-section code, .markdown-section pre {
-    background-color: #282c34;
-    border-radius: 5px;
-  }
+    .markdown-section code,
+    .markdown-section pre {
+      background-color: #282c34;
+      border-radius: 5px;
+    }
   </style>
 
 
 </head>
 
 <body>
-<nav>
-      <a href="hygger.xyz">hygger小栈</a>
+  <nav>
+    <a href="hygger.xyz">hygger小栈</a>
   </nav>
   <div id="app"></div>
   <script>
 
     window.$docsify = {
       name: 'hygger小栈',
+      routerMode: 'history',
       repo: 'https://github.com/quiet-red-maple/docs',
       loadSidebar: true,
       maxLevel: 5,//最大支持渲染的标题层级
@@ -61,8 +63,8 @@
       },
       // 复制代码
       copyCode: {
-        buttonText : '复制',
-        errorText  : '复制失败',
+        buttonText: '复制',
+        errorText: '复制失败',
         successText: '复制成功'
       }
     }
