@@ -34,6 +34,7 @@
   - [React 知识点](pages/React知识点.md)
   - [React 理念](pages/React理念.md)
   - [React 生命周期](pages/React生命周期.md)
+  - [React 组件间传值的几种情形](pages/React组件间传值的几种情形.md)
   - [vue3 api](pages/vue3_api.md)
 
 - 工程化
