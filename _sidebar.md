@@ -24,6 +24,7 @@
   - [原型链](pages/原型链.md)
   - [执行上下文和执行栈](pages/执行上下文和执行栈.md)
   - [call、apply、bind](pages/call、apply、bind.md)
+  - [script标签中defer和async属性的区别](pages/script标签中defer和async属性的区别.md)
 
 - Typescript
 
