@@ -25,6 +25,7 @@
   - [执行上下文和执行栈](pages/执行上下文和执行栈.md)
   - [call、apply、bind](pages/call、apply、bind.md)
   - [script标签中defer和async属性的区别](pages/script标签中defer和async属性的区别.md)
+  - [promise方法](pages/promise方法.md)
 
 - Typescript
 
