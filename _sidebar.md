@@ -6,7 +6,8 @@
 
   - [输入 URL 发生了什么](pages/输入URL发生了什么.md)
   - [数据结构](pages/数据结构.md)
-  - [http 结构](pages/http结构.md)
+  - [http结构](pages/http结构.md)
+  - [http各版本](pages/http各版本.md)
   - [URL 重定向](pages/URL重定向.md)
   - [回流和重绘](pages/回流和重绘.md)
 
@@ -26,6 +27,7 @@
   - [call、apply、bind](pages/call、apply、bind.md)
   - [script标签中defer和async属性的区别](pages/script标签中defer和async属性的区别.md)
   - [promise方法](pages/promise方法.md)
+  - [setmap区别](pages/setmap区别.md)
 
 - Typescript
 
