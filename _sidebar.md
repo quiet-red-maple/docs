@@ -28,6 +28,7 @@
   - [script标签中defer和async属性的区别](pages/script标签中defer和async属性的区别.md)
   - [promise方法](pages/promise方法.md)
   - [setmap区别](pages/setmap区别.md)
+  - [js严格模式](pages/js严格模式.md)
 
 - Typescript
 
