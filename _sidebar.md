@@ -29,6 +29,7 @@
   - [promise方法](pages/promise方法.md)
   - [setmap区别](pages/setmap区别.md)
   - [js严格模式](pages/js严格模式.md)
+  - [javascript类型判断.md](pages/javascript类型判断.md)
 
 - Typescript
 
