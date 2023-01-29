@@ -10,6 +10,9 @@
   - [http各版本](pages/http各版本.md)
   - [URL 重定向](pages/URL重定向.md)
   - [回流和重绘](pages/回流和重绘.md)
+  
+- css 
+  - [flex布局](pages/flex布局.md)
 
 - js 基础
 
