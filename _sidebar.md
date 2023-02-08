@@ -53,7 +53,10 @@
   - [webpack知识点](pages/webpack知识点.md)
   - [Tree-Shaking](pages/Tree-Shaking.md)
   - [文件指纹](pages/文件指纹.md)
+  
+- 架构设计
   - [前端埋点](pages/前端埋点.md)
+  - [前端监控](pages/前端监控.md)
 
 - 测试
 
