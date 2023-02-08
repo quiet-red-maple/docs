@@ -45,12 +45,15 @@
   - [React 理念](pages/React理念.md)
   - [React 生命周期](pages/React生命周期.md)
   - [React 组件间传值的几种情形](pages/React组件间传值的几种情形.md)
+  - [React diff算法](pages/reactdiff算法.md)
   - [vue3 api](pages/vue3_api.md)
 
 - 工程化
 
   - [webpack知识点](pages/webpack知识点.md)
   - [Tree-Shaking](pages/Tree-Shaking.md)
+  - [文件指纹](pages/文件指纹.md)
+  - [前端埋点](pages/前端埋点.md)
 
 - 测试
 
