@@ -81,6 +81,7 @@
   - [防抖节流](pages/Code/防抖节流.md)
   - [发布订阅](pages/Code/发布订阅.md)
   - [寄生组合式继承](pages/Code/寄生组合式继承.md)
+  - [call、apply、bind实现](pages/Code/call、apply、bind实现.md)
 
 - 算法(/Algorithm)
   - [算法入门-概念篇](pages/Algorithm/算法入门-概念篇.md)
