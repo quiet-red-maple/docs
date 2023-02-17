@@ -19,6 +19,7 @@
 
   - [string 基础操作](pages/Js/string基础操作.md)
   - [array 基础操作](pages/Js/array_基础操作.md)
+  - [闭包](pages/Js/闭包.md)
   - [js 引擎执行过程](pages/Js/js引擎的执行过程.md)
   - [js 模块演变](pages/Js/js-模块演变.md)
   - [ES6 模块和 CommonJS](pages/Js/ES6模块和CommonJS.md)
