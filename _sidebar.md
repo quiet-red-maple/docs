@@ -84,6 +84,6 @@
   - [寄生组合式继承](pages/Code/寄生组合式继承.md)
   - [call、apply、bind实现](pages/Code/call、apply、bind实现.md)
 
-- 算法(/Algorithm)
+- 算法
   - [算法入门-概念篇](pages/Algorithm/算法入门-概念篇.md)
   - [算法入门-前端常见算法](pages/Algorithm/前端常见算法.md)
