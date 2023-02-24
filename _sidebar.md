@@ -62,6 +62,7 @@
 - 架构设计
   - [前端埋点](pages/Architecture/前端埋点.md)
   - [前端监控](pages/Architecture/前端监控.md)
+  - [前端性能优化](pages/Architecture/前端性能优化.md)
 
 - 测试
 
@@ -83,6 +84,7 @@
   - [发布订阅](pages/Code/发布订阅.md)
   - [寄生组合式继承](pages/Code/寄生组合式继承.md)
   - [call、apply、bind实现](pages/Code/call、apply、bind实现.md)
+  - [instanceof实现](pages/Code/instanceof实现.md)
 
 - 算法
   - [算法入门-概念篇](pages/Algorithm/算法入门-概念篇.md)
