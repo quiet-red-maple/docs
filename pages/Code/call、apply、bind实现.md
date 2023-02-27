@@ -72,19 +72,21 @@ bar.myApply(foo, ['white', 32]);
 - 3.如果不是，使用`apply`，将`context`和处理好的参数传入
 
 ```js
-Function.prototype.myBind = function (context,...args1) {
-  if (this === Function.prototype) {
-    throw new TypeError('Error')
-  }
-  const _this = this
-  return function F(...args2) {
-    // 判断是否用于构造函数
-    if (this instanceof F) {
-      return new _this(...args1, ...args2)
-    }
-    return _this.apply(context, args1.concat(args2))
-  }
-}
+Function.prototype.bind_ = function (obj, ...args) {
+    if (typeof this !== "function") {
+        throw new Error("Function.prototype.bind - what is trying to be bound is not callable");
+    };
+    var fn = this;
+    //创建中介函数
+    var fn_ = function () {};
+    var bound = function (...args2) {
+        //通过constructor判断调用方式，为true this指向实例，否则为obj
+        fn.apply(this.constructor === fn ? this : obj, args.concat(args2));
+    };
+    fn_.prototype = fn.prototype;
+    bound.prototype = new fn_();
+    return bound;
+};
 
 let foo = {
   value: 1
