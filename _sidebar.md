@@ -63,6 +63,7 @@
   - [前端埋点](pages/Architecture/前端埋点.md)
   - [前端监控](pages/Architecture/前端监控.md)
   - [前端性能优化](pages/Architecture/前端性能优化.md)
+  - [设计模式](pages/Architecture/设计模式.md)
 
 - 测试
 
