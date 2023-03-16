@@ -292,3 +292,52 @@ const Child = React.forwardRef((props, ref) => {
 ```
 
 Refs 转发需要使用 `React.forwardRef()` 方法创造组件，该方法接收一个回调函数做为参数，该回调函数接收两个入参，第一个是传进组件的 `props`，第二个是传进组件的的 `ref`，通过内部逻辑决定 `ref` 再转发给谁，回调函数的返回值是最终生成的组件；页面加载组件后，点击按钮，就能像直接使用 `ref` 一样改变展示的文本值了；
+
+### 优化
+
+可以通过**useImperativeHandle**来控制子组件向父组件暴露的属性和方法
+
+1、子组件的代码
+
+```react
+import React, { useState, useRef, useImperativeHandle, forwardRef } from 'react'
+
+function Child(props, parentRef) {
+  const inputRef = useRef();
+  useImperativeHandle(parentRef, () => {
+    // return返回的值就可以被父组件获取到
+    return {
+      focus() {
+        inputRef.current.focus();
+      }
+    }
+  })
+  return (
+    <>
+      <p>{props.name}</p>
+      <input type="text" ref={inputRef} />
+    </>
+  )
+}
+
+let ForwardChidl = forwardRef(Child);
+```
+
+2、父组件的代码
+
+```react
+export default () => {
+  const parentRef = useRef();
+
+  const focusHandler = () => {
+    parentRef.current.focus();
+  }
+  return (
+    <>
+      <ForwardChidl ref={parentRef} name={'你好'} />
+      <button onClick={focusHandler}>获取焦点</button>
+    </>
+  )
+}
+```
+
