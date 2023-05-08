@@ -35,7 +35,8 @@
   - [setmap区别](pages/Js/setmap区别.md)
   - [js严格模式](pages/Js/js严格模式.md)
   - [javascript类型判断](pages/Js/javascript类型判断.md)
-  - [jsnew操作](pages/Js/js-new操作.md)
+  - [js new操作](pages/Js/js-new操作.md)
+  - [try...catch](pages/Js/try...catch.md)
 
 - Typescript
 
