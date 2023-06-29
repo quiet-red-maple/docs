@@ -37,6 +37,8 @@
   - [javascript类型判断](pages/Js/javascript类型判断.md)
   - [js new操作](pages/Js/js-new操作.md)
   - [try...catch](pages/Js/try...catch.md)
+  - [正则](pages/Js/正则.md)
+  - [正则速查表](pages/Js/正则速查表.md)
 
 - Typescript
 
