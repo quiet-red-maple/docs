@@ -89,6 +89,9 @@
   - [寄生组合式继承](pages/Code/寄生组合式继承.md)
   - [call、apply、bind实现](pages/Code/call、apply、bind实现.md)
   - [instanceof实现](pages/Code/instanceof实现.md)
+  
+- 常用小方法
+  - [模拟异步请求](pages/Method/模拟异步请求.md)
 
 - 算法
   - [算法入门-概念篇](pages/Algorithm/算法入门-概念篇.md)
