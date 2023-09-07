@@ -12,6 +12,15 @@ Node.js主要分为四大部分，Node Standard Library，Node Bindings，V8，L
   - C-ares：提供了异步处理 DNS 相关的能力。
   - http_parser、OpenSSL、zlib 等：提供包括 http 解析、SSL、数据压缩等其他的能力。
 
+事件循环
+
+- 1. **`timers` 阶段**: 这个阶段执行 `setTimeout(callback)` 和 `setInterval(callback)` 预定的 callback;
+- 2. **`I/O callbacks` 阶段**: 此阶段执行某些系统操作的回调，例如TCP错误的类型。 例如，如果TCP套接字在尝试连接时收到 ECONNREFUSED，则某些* nix系统希望等待报告错误。 这将操作将等待在==I/O回调阶段==执行;
+- 3. **`idle, prepare` 阶段**: 仅node内部使用;
+- 4. **`poll` 阶段**: 获取新的I/O事件, 例如操作读取文件等等，适当的条件下node将阻塞在这里;
+- 5. **`check` 阶段**: 执行 `setImmediate()` 设定的callbacks;
+- 6. **`close callbacks` 阶段**: 比如 `socket.on(‘close’, callback)` 的callback会在这个阶段执行;
+
 ### libuv
 
 ibuv是一个跨平台的C库，用于异步I/O操作和事件循环。它的设计目标是提供高效的事件循环，以便应用程序能够在不同的操作系统上实现非阻塞I/O操作。
