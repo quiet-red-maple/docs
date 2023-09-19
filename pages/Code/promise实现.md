@@ -1,0 +1,3 @@
+```js
+function new Promise()
+```

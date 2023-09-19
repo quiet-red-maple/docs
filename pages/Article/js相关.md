@@ -1,6 +1,8 @@
 ### 事件循环
 [彻底搞懂JavaScript事件循环](https://juejin.cn/post/6992167223523541023)
 
+### Promise
+[JavaScript Promise迷你书](http://liubin.org/promises-book/)
 ### React
 [React高频面试题总结 （附答案及原理代码）](https://juejin.cn/post/7275550906207338559)
 
