@@ -23,7 +23,7 @@ Node.js主要分为四大部分，Node Standard Library，Node Bindings，V8，L
 
 ### libuv
 
-ibuv是一个跨平台的C库，用于异步I/O操作和事件循环。它的设计目标是提供高效的事件循环，以便应用程序能够在不同的操作系统上实现非阻塞I/O操作。
+libuv是一个跨平台的C库，用于异步I/O操作和事件循环。它的设计目标是提供高效的事件循环，以便应用程序能够在不同的操作系统上实现非阻塞I/O操作。
 
 最初的node.js使用了Google的V8解析引擎和Marc Lehmann的libev。随着node.js的日益流行，node.js需要同时支持windows, 但是libev只能在Unix环境下运行。Windows 平台上与kqueue(FreeBSD)或者(e)poll(Linux)等内核事件通知相应的机制是IOCP。libuv提供了一个跨平台的抽象，由平台决定使用libev或IOCP。在node-v0.9.0版本中，libuv移除了libev的内容。
 
