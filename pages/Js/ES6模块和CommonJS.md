@@ -21,3 +21,18 @@ CommonJS其实加载的是一个对象，这个对象只有在脚本运行时才
 - 关于模块顶层的`this`指向问题，在**CommonJS**顶层，`this`指向当前模块；而在ES6模块中，`this`指向`undefined`；
 - 关于两个模块互相引用的问题，在ES6模块当中，是支持加载**CommonJS**模块的。但是反过来，**CommonJS**并不能`require`ES6模块，在NodeJS中，两种模块方案是分开处理的。
 - `commonJS`采用的是深度优先遍历执行顺序是`父=>子=>父`，`ES6 module`采用的也是深度优先遍历，但由于`import` 会自动提升到代码的顶层,所以它的执行顺序是`子=>父`
+
+### 循环引用
+CommonJS对循环引用的处理基于他的缓存，即：将导出值拷贝一份，放在一块新的内存，用到的时候直接读取这块内存。
+ES module导出的是一个索引——内存地址，没有办法这样处理。它依赖的是“模块地图”和“模块记录”。
+ES Module借助模块地图，已经进入过的模块标注为获取中，遇到import语句会去检查这个地图，已经标注为获取中的则不会进入，地图中的每一个节点是一个模块记录，上面有导出变量的内存地址，导入时会做一个连接——即指向同一块内存。
+
+注意：不能直接将exports变量指向一个值，因为这样等于切断了exports与module.exports的联系。
+原因：
+exports 相当于 `var exports = module.exports`; 
+如果 `exports = function (x) {console.log(x)}` 就会切断exports与module.exports的联系。
+```js
+  exports.hello = function () { return 'hello '}
+  module.exports = 'hello world';
+```
+hello函数也是无法对外输出的，因为module.exports被重新赋值了。
