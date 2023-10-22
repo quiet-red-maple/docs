@@ -92,6 +92,7 @@
   - [寄生组合式继承](pages/Code/寄生组合式继承.md)
   - [call、apply、bind实现](pages/Code/call、apply、bind实现.md)
   - [instanceof实现](pages/Code/instanceof实现.md)
+  - [函数重载](pages/Code/函数重载.md)
   
 - 常用小方法
   - [模拟异步请求](pages/Method/模拟异步请求.md)
