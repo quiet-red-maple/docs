@@ -3,14 +3,16 @@
 由于由于历史原因，在判断原始类型时，`typeof null`会等于`object`。而且对于对象（Object）、数组（Array）来说，都会转换成`object`。例子如下：
 
 ```javascript
-    typeof 1 // 'number'
-    typeof "1" // 'string'
-    typeof null // 'object'
-    typeof undefined // 'undefined'
-    
-    typeof [] // 'object'
-    typeof {} // 'object'
-    typeof function() {} // 'function'
+    console.log(typeof undefined); // "undefined"
+    console.log(typeof true);      // "boolean"
+    console.log(typeof 42);        // "number"
+    console.log(typeof "hello");   // "string"
+    console.log(typeof {});        // "object"
+    console.log(typeof []);        // "object"
+    console.log(typeof null);      // "object" (特殊情况)
+    console.log(typeof function(){}); // "function"
+    console.log(typeof Symbol());  // "symbol"
+    console.log(typeof 10n);       // "bigint"
 ```
 
 对于返回值为`object`，有三种情况：

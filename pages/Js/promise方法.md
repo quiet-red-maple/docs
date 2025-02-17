@@ -2,6 +2,17 @@
 
 **`Promise`** 对象用于表示一个异步操作的最终完成（或失败）及其结果值。
 
+Promise对象有三种状态
+- Pending（未决）初始状态
+- Fulfilled（已履行/成功）：操作成功完成时的状态
+- Rejected（已拒绝/失败）：操作因错误或异常未能完成时的状态
+
+Promise状态变化的特性是：
+
+Promise状态的转变是不可逆且只能发生一次。也就是说，一个Promise不能从Fulfilled状态变回Pending状态，也不能从Rejected状态变为Pending或者Fulfilled状态。
+一旦Promise从Pending状态变为Fulfilled（resolved）或Rejected（rejected），它就永远不会再改变。
+因此，Promise的状态不能重复改变。
+
 在使用 Promise 时，会有以下约定：
 
 - 在本轮 [事件循环](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/EventLoop#执行至完成) 运行完成之前，回调函数是不会被调用的。

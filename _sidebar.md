@@ -12,6 +12,10 @@
   - [回流和重绘](pages/Base/回流和重绘.md)
   - [同步、异步、阻塞、非阻塞](pages/Base/同步、异步、阻塞、非阻塞.md)
   
+- html
+  - [如何理解HTML语义化](pages/Html/如何理解HTML语义化.md)
+  - [块状元素&内联元素](pages/Html/块状元素&内联元素.md)
+  
 - css 
   - [flex布局](pages/Css/flex布局.md)
 
@@ -54,7 +58,7 @@
   - [React 理念](pages/React/React理念.md)
   - [React 生命周期](pages/React/React生命周期.md)
   - [React 组件间传值的几种情形](pages/React/React组件间传值的几种情形.md)
-  - [React diff算法](pages/React/React/reactdiff算法.md)
+  - [React diff算法](pages/React/reactdiff算法.md)
 
 - Vue
   - [vue3 api](pages/Vue/vue3_api.md)
