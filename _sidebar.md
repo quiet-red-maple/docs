@@ -15,6 +15,8 @@
 - html
   - [如何理解HTML语义化](pages/Html/如何理解HTML语义化.md)
   - [块状元素&内联元素](pages/Html/块状元素&内联元素.md)
+  - [html的href和src有什么区别](pages/Html/html的href和src有什么区别.md)
+  - [canvas和svg的区别](pages/Html/canvas和svg的区别.md)
   
 - css 
   - [flex布局](pages/Css/flex布局.md)
@@ -43,6 +45,7 @@
   - [try...catch](pages/Js/try...catch.md)
   - [正则](pages/Js/正则.md)
   - [正则速查表](pages/Js/正则速查表.md)
+  - [typeof](pages/Js/typeof.md)
   
 - Node
   - [node基础架构](pages/Node/node基础架构.md)
