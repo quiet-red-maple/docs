@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript 作用域与作用域链</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            color: #1a2a6c;
+            margin-bottom: 10px;
+            font-size: 2.5rem;
+        }
+        
+        .subtitle {
+            color: #666;
+            font-size: 1.2rem;
+        }
+        
+        .content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+        
+        @media (max-width: 768px) {
+            .content {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .card h2 {
+            color: #1a2a6c;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #fdbb2d;
+        }
+        
+        .card h3 {
+            color: #b21f1f;
+            margin: 15px 0 10px;
+        }
+        
+        .code-block {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .keyword {
+            color: #f92672;
+        }
+        
+        .function {
+            color: #66d9ef;
+        }
+        
+        .string {
+            color: #a6e22e;
+        }
+        
+        .comment {
+            color: #75715e;
+        }
+        
+        .visualization {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #1a2a6c;
+        }
+        
+        .scope-chain {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+        
+        .scope {
+            background: #1a2a6c;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px;
+            min-width: 150px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .scope.global {
+            background: #b21f1f;
+        }
+        
+        .scope.function {
+            background: #1a2a6c;
+        }
+        
+        .scope.block {
+            background: #fdbb2d;
+            color: #333;
+        }
+        
+        .arrow {
+            font-size: 24px;
+            color: #666;
+            margin: 0 10px;
+        }
+        
+        .interactive-demo {
+            background: #e9ecef;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        
+        button {
+            background: #1a2a6c;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px 5px;
+            transition: background 0.3s;
+        }
+        
+        button:hover {
+            background: #b21f1f;
+        }
+        
+        .output {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 15px;
+            min-height: 100px;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .tip {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>JavaScript 作用域与作用域链</h1>
+            <p class="subtitle">理解变量访问规则与执行上下文</p>
+        </header>
+        
+        <div class="content">
+            <div class="card">
+                <h2>什么是作用域？</h2>
+                <p>作用域是指程序中定义变量的区域，它决定了变量的可见性和生命周期。</p>
+                
+                <h3>JavaScript 中的作用域类型</h3>
+                <ul>
+                    <li><strong>全局作用域</strong> - 在代码的任何地方都能访问</li>
+                    <li><strong>函数作用域</strong> - 在函数内部定义的变量只能在函数内部访问</li>
+                    <li><strong>块级作用域</strong> - ES6 引入，由 {} 界定（let/const）</li>
+                </ul>
+                
+                <div class="code-block">
+                    <span class="comment">// 全局作用域</span><br>
+                    <span class="keyword">var</span> globalVar = <span class="string">"我是全局变量"</span>;<br><br>
+                    
+                    <span class="keyword">function</span> <span class="function">testFunction</span>() {<br>
+                    &nbsp;&nbsp;<span class="comment">// 函数作用域</span><br>
+                    &nbsp;&nbsp;<span class="keyword">var</span> functionVar = <span class="string">"我是函数变量"</span>;<br><br>
+                    
+                    &nbsp;&nbsp;<span class="keyword">if</span> (<span class="keyword">true</span>) {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">// 块级作用域 (ES6)</span><br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span> blockVar = <span class="string">"我是块级变量"</span>;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">const</span> constantVar = <span class="string">"我是常量"</span>;<br>
+                    &nbsp;&nbsp;}<br>
+                    }<br>
+                </div>
+                
+                <div class="tip">
+                    <strong>注意：</strong> var 声明的变量没有块级作用域，只有函数作用域和全局作用域。
+                </div>
+            </div>
+            
+            <div class="card">
+                <h2>作用域链</h2>
+                <p>当访问一个变量时，JavaScript 会按照从内到外的顺序在作用域链中查找该变量。</p>
+                
+                <div class="visualization">
+                    <h3>作用域链查找过程</h3>
+                    <p>在当前作用域找不到变量时，会向上一级作用域继续查找，直到找到或到达全局作用域。</p>
+                    
+                    <div class="scope-chain">
+                        <div class="scope block">块级作用域<br>(if语句)</div>
+                        <div class="arrow">→</div>
+                        <div class="scope function">函数作用域<br>(test函数)</div>
+                        <div class="arrow">→</div>
+                        <div class="scope global">全局作用域</div>
+                    </div>
+                    
+                    <div class="code-block">
+                        <span class="keyword">var</span> globalVar = <span class="string">"全局"</span>;<br><br>
+                        
+                        <span class="keyword">function</span> <span class="function">outer</span>() {<br>
+                        &nbsp;&nbsp;<span class="keyword">var</span> outerVar = <span class="string">"外部"</span>;<br>
+                        &nbsp;&nbsp;<br>
+                        &nbsp;&nbsp;<span class="keyword">function</span> <span class="function">inner</span>() {<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">var</span> innerVar = <span class="string">"内部"</span>;<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">// 可以访问 innerVar, outerVar, globalVar</span><br>
+                        &nbsp;&nbsp;}<br>
+                        &nbsp;&nbsp;<br>
+                        &nbsp;&nbsp;<span class="comment">// 可以访问 outerVar, globalVar</span><br>
+                        &nbsp;&nbsp;<span class="comment">// 不能访问 innerVar</span><br>
+                        }<br>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h2>闭包与作用域链</h2>
+                <p>闭包是指有权访问另一个函数作用域中变量的函数，创建闭包的常见方式是在一个函数内部创建另一个函数。</p>
+                
+                <div class="code-block">
+                    <span class="keyword">function</span> <span class="function">createCounter</span>() {<br>
+                    &nbsp;&nbsp;<span class="keyword">let</span> count = <span class="number">0</span>; <span class="comment">// 被闭包引用的变量</span><br>
+                    &nbsp;&nbsp;<br>
+                    &nbsp;&nbsp;<span class="keyword">return</span> <span class="keyword">function</span>() {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;count++;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span> count;<br>
+                    &nbsp;&nbsp;};<br>
+                    }<br><br>
+                    
+                    <span class="keyword">const</span> counter = createCounter();<br>
+                    console.log(counter()); <span class="comment">// 1</span><br>
+                    console.log(counter()); <span class="comment">// 2</span><br>
+                    console.log(counter()); <span class="comment">// 3</span><br>
+                </div>
+                
+                <div class="tip">
+                    <strong>闭包原理：</strong> 内部函数保持了对外部函数作用域的引用，即使外部函数已经执行完毕，其作用域依然被保留。
+                </div>
+            </div>
+            
+            <div class="card">
+                <h2>常见陷阱与最佳实践</h2>
+                
+                <h3>变量提升</h3>
+                <div class="code-block">
+                    console.log(a); <span class="comment">// undefined (不是ReferenceError)</span><br>
+                    <span class="keyword">var</span> a = <span class="number">5</span>;<br><br>
+                    
+                    <span class="comment">// 相当于:</span><br>
+                    <span class="keyword">var</span> a;<br>
+                    console.log(a);<br>
+                    a = <span class="number">5</span>;
+                </div>
+                
+                <h3>let/const 不存在变量提升</h3>
+                <div class="code-block">
+                    console.log(b); <span class="comment">// ReferenceError</span><br>
+                    <span class="keyword">let</span> b = <span class="number">10</span>;
+                </div>
+                
+                <h3>循环中的闭包陷阱</h3>
+                <div class="code-block">
+                    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++) {<br>
+                    &nbsp;&nbsp;setTimeout(<span class="keyword">function</span>() {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;console.log(i); <span class="comment">// 输出3次3</span><br>
+                    &nbsp;&nbsp;}, 100);<br>
+                    }<br><br>
+                    
+                    <span class="comment">// 解决方案1: 使用let</span><br>
+                    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++) {<br>
+                    &nbsp;&nbsp;setTimeout(<span class="keyword">function</span>() {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;console.log(i); <span class="comment">// 输出0, 1, 2</span><br>
+                    &nbsp;&nbsp;}, 100);<br>
+                    }<br><br>
+                    
+                    <span class="comment">// 解决方案2: 使用IIFE</span><br>
+                    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++) {<br>
+                    &nbsp;&nbsp;(<span class="keyword">function</span>(j) {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;setTimeout(<span class="keyword">function</span>() {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;console.log(j); <span class="comment">// 输出0, 1, 2</span><br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;}, 100);<br>
+                    &nbsp;&nbsp;})(i);<br>
+                    }
+                </div>
+                
+                <div class="tip">
+                    <strong>最佳实践：</strong> 优先使用 const 和 let，避免使用 var；理解闭包的工作原理；注意循环中变量捕获的问题。
+                </div>
+            </div>
+            
+            <div class="card" style="grid-column: 1 / -1;">
+                <h2>交互式演示</h2>
+                <p>点击按钮查看不同作用域下的变量访问结果：</p>
+                
+                <div class="interactive-demo">
+                    <button onclick="demoGlobalScope()">测试全局作用域</button>
+                    <button onclick="demoFunctionScope()">测试函数作用域</button>
+                    <button onclick="demoBlockScope()">测试块级作用域</button>
+                    <button onclick="demoClosure()">测试闭包</button>
+                    <button onclick="clearOutput()">清除输出</button>
+                    
+                    <div class="output" id="output">
+                        <span class="comment">// 输出将显示在这里</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>JavaScript 作用域与作用域链解析 | 理解变量访问机制</p>
+        </footer>
+    </div>
+
+    <script>
+        const output = document.getElementById('output');
+        
+        function logToOutput(message) {
+            output.innerHTML += message + '<br>';
+        }
+        
+        function clearOutput() {
+            output.innerHTML = '<span class="comment">// 输出已清除</span><br>';
+        }
+        
+        // 全局变量
+        const globalVar = "我是全局变量";
+        
+        function demoGlobalScope() {
+            logToOutput("=== 测试全局作用域 ===");
+            logToOutput(`直接访问 globalVar: ${globalVar}`);
+            
+            // 尝试在函数内部访问全局变量
+            function testAccess() {
+                logToOutput(`在函数内部访问 globalVar: ${globalVar}`);
+            }
+            testAccess();
+            
+            logToOutput("结论: 全局变量在任何地方都可以访问");
+        }
+        
+        function demoFunctionScope() {
+            logToOutput("<br>=== 测试函数作用域 ===");
+            
+            function outerFunction() {
+                const outerVar = "我是外部函数变量";
+                
+                function innerFunction() {
+                    const innerVar = "我是内部函数变量";
+                    logToOutput(`内部函数访问自己的变量: ${innerVar}`);
+                    logToOutput(`内部函数访问外部函数的变量: ${outerVar}`);
+                    logToOutput(`内部函数访问全局变量: ${globalVar}`);
+                }
+                
+                innerFunction();
+                
+                // 外部函数不能访问内部函数的变量
+                try {
+                    logToOutput(`外部函数尝试访问内部变量: ${innerVar}`);
+                } catch (e) {
+                    logToOutput(`外部函数无法访问内部变量: ${e.message}`);
+                }
+            }
+            
+            outerFunction();
+            
+            // 全局作用域不能访问函数内部的变量
+            try {
+                logToOutput(`全局作用域尝试访问函数变量: ${outerVar}`);
+            } catch (e) {
+                logToOutput(`全局作用域无法访问函数变量: ${e.message}`);
+            }
+            
+            logToOutput("结论: 函数作用域形成独立的作用域层级");
+        }
+        
+        function demoBlockScope() {
+            logToOutput("<br>=== 测试块级作用域 ===");
+            
+            if (true) {
+                const blockVar = "我是块级变量";
+                let blockLet = "我是块级let变量";
+                var blockVarOld = "我是var变量(无块级作用域)";
+                
+                logToOutput(`在块内访问 const: ${blockVar}`);
+                logToOutput(`在块内访问 let: ${blockLet}`);
+                logToOutput(`在块内访问 var: ${blockVarOld}`);
+            }
+            
+            // 块外访问
+            try {
+                logToOutput(`块外访问 const: ${blockVar}`);
+            } catch (e) {
+                logToOutput(`块外无法访问 const: ${e.message}`);
+            }
+            
+            try {
+                logToOutput(`块外访问 let: ${blockLet}`);
+            } catch (e) {
+                logToOutput(`块外无法访问 let: ${e.message}`);
+            }
+            
+            // var 没有块级作用域
+            logToOutput(`块外可以访问 var: ${blockVarOld}`);
+            
+            logToOutput("结论: let/const 有块级作用域，var 没有");
+        }
+        
+        function demoClosure() {
+            logToOutput("<br>=== 测试闭包 ===");
+            
+            function createCounter() {
+                let count = 0;
+                
+                return function() {
+                    count++;
+                    return count;
+                };
+            }
+            
+            const counter = createCounter();
+            logToOutput(`第一次调用计数器: ${counter()}`);
+            logToOutput(`第二次调用计数器: ${counter()}`);
+            logToOutput(`第三次调用计数器: ${counter()}`);
+            
+            // 创建另一个计数器实例
+            const anotherCounter = createCounter();
+            logToOutput(`新计数器的第一次调用: ${anotherCounter()}`);
+            
+            logToOutput("结论: 闭包使函数能够记住并访问其词法作用域");
+        }
+    </script>
+</body>
+</html>

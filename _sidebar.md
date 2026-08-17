@@ -107,8 +107,12 @@
 - 算法
   - [算法入门-概念篇](pages/Algorithm/算法入门-概念篇.md)
   - [算法入门-前端常见算法](pages/Algorithm/前端常见算法.md)
+  
+- ai
+  - [什么是agent](pages/AI/什么是agent.md)
 
 - 优秀文章收录
   - [js相关优秀文章](pages/Article/js相关.md)
+  - [ai相关优秀文章](pages/AI/ai文章.md)
 - 代办事项
   - [待梳理知识点](pages/Incomplete/待梳理知识点.md)
