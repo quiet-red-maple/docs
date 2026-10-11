@@ -55,7 +55,7 @@
   - [Typescript 高级技巧](pages/Typescript/Typescript高级技巧.md)
 
 - React
-
+  - [react各个执行阶段](pages/React/react各个执行阶段.md)
   - [React 知识点](pages/React/React知识点.md)
   - [react架构(Fiber)](pages/React/react架构(Fiber).md)
   - [React 理念](pages/React/React理念.md)
@@ -64,6 +64,7 @@
   - [React diff算法](pages/React/reactdiff算法.md)
 
 - Vue
+  - [vue 架构](pages/Vue/vue_架构.md)
   - [vue3 api](pages/Vue/vue3_api.md)
 
 - Webpack
