@@ -73,3 +73,27 @@ commit 阶段全程同步不可中断（中断会导致 UI 撕裂），分三个
            ↓
          真实 DOM 更新，useEffect 异步在绘制后执行
 ```
+
+### 渲染顺序
+
+```react
+function Parent() {
+  console.log('1. Parent render');
+  useEffect(() => console.log('4. Parent effect'), []);
+  return <Child />;
+}
+function Child() {
+  console.log('2. Child render');
+  useEffect(() => console.log('3. Child effect'), []);
+  return <div>child</div>;
+}
+```
+
+控制台：
+1. Parent render
+2. Child render
+--- DOM 已挂载 ---
+3. Child effect
+4. Parent effect
+
+| React 渲染阶段父到子（DFS 自上而下），Commit 后 effect 子到父（completeWork 自底向上）；useLayoutEffect 在 paint 前同步执行，useEffect 在 paint 后异步执行，两者父子维度都是子先父后；cleanup 同样子先父后，同组件内先清理旧 effect 再执行新 effect。
