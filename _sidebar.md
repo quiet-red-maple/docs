@@ -111,7 +111,10 @@
   - [算法入门-前端常见算法](pages/Algorithm/前端常见算法.md)
   
 - ai
+  - [ai工具](pages/AI/ai工具.md)
   - [什么是agent](pages/AI/什么是agent.md)
+  - [提示工程](pages/AI/提示工程.md)
+  - [RAG检索增强生成](pages/AI/RAG检索增强生成.md)
 
 - 优秀文章收录
   - [js相关优秀文章](pages/Article/js相关.md)
